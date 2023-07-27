@@ -1,0 +1,1 @@
+function iniciarApp(){crearGaleria()}function crearGaleria(){const e=document.querySelector(".album-imagenes");for(let n=1;n<=8;n++){const i=document.createElement("picture");i.innerHTML=`\n        <img loading="lazy" width= "200" height="300" src="src/img/${n}.jpg" alt="Imagen ${n}">`,e.appendChild(i)}}document.addEventListener("DOMContentLoaded",(function(){iniciarApp()}));

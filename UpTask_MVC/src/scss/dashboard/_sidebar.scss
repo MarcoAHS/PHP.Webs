@@ -1,0 +1,89 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+.sidebar{
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 500ms;
+    background-color: v.$indigo;
+    height: 0;
+    overflow: hidden;
+    @include m.tablet {
+        height: 100%;
+        opacity: 1;
+        padding: 2rem;
+        background-color: v.$indigo;
+    }
+    .contenedor-sidebar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h2{
+            color: v.$blanco;
+            margin: 0;
+            text-align: center;
+        }
+        .cerrar-menu{
+            display: flex;
+            justify-content: center;
+            height: 7rem;
+            width: 7rem;
+            @include m.tablet {
+                display: none;
+            }
+            img{
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    &.mostrar{
+        opacity: 1;
+        padding: 2rem;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: transparent 10%;
+        @include m.tablet {
+            display: none;
+        }
+    }
+    &.cerrar{
+        opacity: 0;
+    }
+    .sidebar-nav{
+        margin-top: 5rem;
+        a{
+            color: v.$blanco;
+            display: block;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            transition-property: background-color;
+            transition-duration: 300ms;
+            font-size: 2.4rem;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            &:hover,
+            &.activo{
+                background-color: darken(v.$indigo, 20%);
+                border-radius: .5rem;
+            }
+            @include m.tablet {
+                text-align: left;
+            }
+        }
+    }
+    .cerrar-sesion-mobil{
+        margin-top: 10rem;
+        .cerrar-sesion{
+            @include m.boton(darken(v.$indigo, 20%), v.$blanco);
+        }
+        @include m.tablet {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "queso_cubano",
+  "version": "1.0.0",
+  "description": "Pagina Web Practica",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marco Antonio Hernandez Solis",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.58.0"
+  },
+  "dependencies": {
+    "gulp-terser-js": "^5.2.2"
+  }
+}

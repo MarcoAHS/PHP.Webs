@@ -1,0 +1,19 @@
+@use 'base/variables' as v;
+.alerta{
+    display: block;
+    text-align: center;
+    color: v.$negro;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    &.error{
+        background-color: lighten(v.$rojo, 50%);
+        border-left: 1rem solid v.$rojo;
+    }
+    &.exito{
+        background-color: lighten(v.$verde, 50%);
+        border-left: 1rem solid v.$verde;
+    }
+}

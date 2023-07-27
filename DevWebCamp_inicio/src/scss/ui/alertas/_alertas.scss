@@ -1,0 +1,17 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+.alerta{
+    font-size: 2rem;
+    font-weight: v.$bold;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    &.error{
+        border-left: 1rem solid v.$rojo;
+        background-color: lighten(v.$rojo, 50%);
+    }
+    &.exito{
+        border-left: 1rem solid v.$verde;
+        background-color: lighten(v.$verde, 50%);
+    }
+}

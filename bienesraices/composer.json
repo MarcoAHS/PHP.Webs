@@ -1,0 +1,19 @@
+{
+    "name": "marco/bienesraices",
+    "description": "Adaptando Proyecto POO",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Marco Antonio Hernandez Solis",
+            "email": "marco_hdz_antonio@outlook.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\" : "./classes"
+        }
+    }
+}

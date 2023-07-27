@@ -1,0 +1,21 @@
+.boton-amarillo{
+    @include boton($amarillo, block);
+}
+.boton-amarillo-contacto{
+    @include boton($amarillo, inline-block);
+}
+.boton-verde{
+    @include boton($verde, block);
+}
+@include tablet {
+    .end{
+        display: flex;
+        justify-content: flex-end;
+        a{
+            margin: 0;
+        }
+    }
+}
+.boton-rojo{
+    @include boton($rojo, block);
+}
