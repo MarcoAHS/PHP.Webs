@@ -1,0 +1,73 @@
+.anuncios{
+    width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    .anuncio{
+        height: 350px;
+        width: 350px;
+        padding: 30px;
+        background-color: grey;
+        color: #dfb067;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5%;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        img{
+            height: 150px;
+            width: 150px;
+        }
+        .atributos{
+            display: flex;
+            justify-content: space-between;
+            gap: 100px;
+            margin-top: 10px;
+        }
+        &:hover{
+            background-color: #dfb067;
+            color: black;
+            cursor: pointer;
+        }
+    }
+}
+.boton{
+    margin: 10px auto;
+    list-style: none;
+    background-color: grey;
+    height: 15px;
+    width: 55px;
+    border-radius: 10%;
+    padding: 10px;
+    &:hover{
+        background-color: #dfb067;
+        cursor: pointer;
+    }
+    a{
+        text-decoration: none;
+        color: black;
+    }
+}
+/*Scroll Animation*/
+.anuncios{
+    .anuncio{
+        view-timeline-name: --image;
+        view-timeline-axis: block;
+        animation-timeline: --image;
+        animation-name: show;
+        animation-range: entry 50% cover 65%;
+        animation-fill-mode: both;
+    }
+}
+@keyframes show {
+    from{
+        opacity: 0;
+        scale: 20%;
+    }
+    to{
+        opacity: 1;
+        scale: 100%;
+    }
+}

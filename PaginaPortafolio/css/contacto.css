@@ -1,0 +1,18 @@
+.form{
+    margin: 42px auto;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    background-color: #dfb067;
+    opacity: 0.8;
+    padding: 20px;
+    .campo{
+        display: flex;
+        margin-bottom: 16px;
+        justify-content: space-between;
+    }
+    input[type=textbox]{
+        width: 300px;
+        height: 250px;
+    }
+}

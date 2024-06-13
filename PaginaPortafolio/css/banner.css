@@ -1,0 +1,17 @@
+.banner{
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+    h2{
+        color: #dfb067;
+        position: absolute;
+        top: 30%;
+        left: 20%;
+        font-size: 80px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+}
+.banner_under{
+    height: 140px;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 68%, rgba(223,176,103,1) 100%);
+}
