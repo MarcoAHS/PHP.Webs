@@ -11,18 +11,47 @@
         }
 
         .login-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
+        margin: 30vh auto;
         width: 400px;
         padding: 40px;
-        transform: translate(-50%, -50%);
-        background: rgba(221, 72, 20, .8);
+        background: rgba(221, 72, 20);
         box-sizing: border-box;
         box-shadow: 0 15px 25px rgba(0,0,0,.6);
         border-radius: 10px;
+        position: relative;
         }
-
+        @property --angle{
+            syntax: "<angle>";
+            initial-value: 0deg;
+            inherits: false;
+        }
+        .login-box::before, 
+        .login-box::after{
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-image: conic-gradient(from var(--angle), transparent 50%, #000);
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            z-index: -1;
+            padding: 4px;
+            border-radius: 10px;
+            animation: 3s spin linear infinite;
+        }
+        @keyframes spin{
+            from{
+                --angle: 0deg;
+            }
+            to{
+                --angle: 360deg;
+            }
+        }
+        .login-box::before{
+            filter: blur(1.5rem);
+            opacity: 0.5;
+        }
         .login-box h2 {
         margin: 0 0 30px;
         padding: 0;

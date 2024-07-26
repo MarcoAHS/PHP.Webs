@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ProductosModel;
+use App\Models\TypeModel;
 use PHPUnit\Event\Telemetry\StopWatch;
 
 class Home extends BaseController
@@ -12,7 +13,8 @@ class Home extends BaseController
         if(!session()->get('name')){
             echo "<script>window.location = 'login';</script>";
         }
-        return view('admin', ['nombre' => session()->get('name')]);
+        $types = TypeModel::getTypes();
+        return view('admin', ['nombre' => session()->get('name'), 'types' => $types]);
     }
     public function default(): string
     {
@@ -51,8 +53,20 @@ class Home extends BaseController
         echo "<script>window.location = 'login';</script>";
     }
     public function consulta(){
-        $result = ProductosModel::getUsersJoinUserTypes($_GET['limite'], $_GET['page'], $_GET['search']);
-        return $result;
+        $results = ProductosModel::getUsersJoinUserTypes($_GET['limite'], $_GET['page'], $_GET['search']);
+        $html = '';
+        foreach($results as $result){
+            $html .= "<tr>";
+            foreach($result as $key => $value){    
+                $html .= "<td>" . $value . "</td>";
+            }
+            $html .= "<td>";
+            $html .= "<button class='editarModal' onclick='userInfo(" . $result->id . ")'>Editar</button>";
+            $html .= "<button onclick='eliminarUsuario(" . $result->id . ")'>Eliminar</button>";
+            $html .= "</td>";
+            $html .= "</tr>";
+        }
+        return ($html);
     }
     public function nuevo(){
         if($_SERVER['REQUEST_METHOD'] === 'POST'){

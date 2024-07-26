@@ -452,9 +452,9 @@
                     <p class="label">
                     <label for="type">Tipo de Usuarios:</label>
                         <select name="type" id="type" required>
-                            <option value="1">1-Administrador</option>
-                            <option value="2">2-Empleado</option>
-                            <option value="3">3-Ejecutivo de Ventas</option>
+                            <?php foreach($types as $type) {?>
+                                <option value="<?php echo $type->id; ?>"><?php echo $type->id; ?> - <?php echo $type->role; ?></option>
+                            <?php } ?>
                         </select>
                     </p>
                     <p>
@@ -497,9 +497,9 @@
                     <p class="label">
                         <label for="type_u">Tipo de Usuarios:</label>
                         <select name="type" id="type_u">
-                            <option value="1">1-Administrador</option>
-                            <option value="2">2-Empleado</option>
-                            <option value="3">3-Ejecutivo de Ventas</option>
+                            <?php foreach($types as $type) {?>
+                                <option value="<?php echo $type->id; ?>"><?php echo $type->id; ?> - <?php echo $type->role; ?></option>
+                            <?php } ?>
                         </select>
                     </p>
                     <p>
@@ -548,9 +548,24 @@
     const contModalUp = document.querySelector('.contenedor-modal-up');
     const limit = document.querySelector('#limit');
     const search = document.querySelector('#search');
-    
+    const debounce = (mainFunction, delay) => {
+    // Declare a variable called 'timer' to store the timer ID
+    let timer;
+
+    // Return an anonymous function that takes in any number of arguments
+    return function (...args) {
+        // Clear the previous timer to prevent the execution of 'mainFunction'
+        clearTimeout(timer);
+
+        // Set a new timer that will execute 'mainFunction' after the specified delay
+        timer = setTimeout(() => {
+        mainFunction(...args);
+        }, delay);
+    };
+    };
+    const debouncedSearchData = debounce(getData, 1000);
     search.addEventListener('input', () => {
-        getData(page);
+        debouncedSearchData(page);
     })
     limit.addEventListener('change', () => {
         getData(page);
@@ -587,7 +602,7 @@
     function getData(page){
         const limite = $('#limit').val();
         const search = $('#search').val() ?? '';
-        $.get(`http://localhost:3000/public/consulta?limite=${limite}&page=${page}&search=${search}`,
+        $.get(`/public/consulta?limite=${limite}&page=${page}&search=${search}`,
             function(data) {
                 document.querySelector('.content').innerHTML = data;
             }
@@ -596,7 +611,7 @@
     }
     function getPagination(page, limite){
         const search = $('#search').val() ?? '';
-        $.get(`http://localhost:3000/public/pagination?page=${page}&limite=${limite}&search=${search}`,
+        $.get(`/public/pagination?page=${page}&limite=${limite}&search=${search}`,
             function(data) {
                 document.querySelector('#pagination').innerHTML = data;
             }
@@ -615,7 +630,7 @@
         $.ajax(
             {
                 data: parametros,
-                url: 'http://localhost:3000/public/nuevo',
+                url: '/public/nuevo',
                 type: 'POST',
                 error: function(){alert('Error');},
                 success: function(value) {
@@ -625,14 +640,14 @@
             }
         )
     }
-    function eliminarProducto(id){
+    function eliminarUsuario(id){
         var parametros = {
             "id" : id
         }
         $.ajax(
             {
                 data: parametros,
-                url: 'http://localhost:3000/public/eliminar',
+                url: '/public/eliminar',
                 type: 'POST',
                 error: function(){alert('Error');},
                 success: function(value) {
@@ -642,7 +657,7 @@
         )
     }
     function userInfo(id){
-        $.get(`http://localhost:3000/public/user?id=${id}`,
+        $.get(`/public/user?id=${id}`,
             function(data) {
                 datos = $.parseJSON(data);
                 document.querySelector('#id_up').value = datos.id
@@ -671,7 +686,7 @@
         $.ajax(
             {
                 data: parametros,
-                url: 'http://localhost:3000/public/actualizar',
+                url: '/public/actualizar',
                 type: 'POST',
                 error: function(){alert('Error');},
                 success: function(value) {

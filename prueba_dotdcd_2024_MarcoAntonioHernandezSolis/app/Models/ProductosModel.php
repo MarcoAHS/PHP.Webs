@@ -39,19 +39,7 @@ class ProductosModel extends Model{
         $sql = "CALL getUsersJoinUserTypes(". $inicio . ", " . $limite .", '%" . $search . "%');";
         $query = $db->query($sql);
         $results = $query->getResult();
-        $html = '';
-        foreach($results as $result){
-            $html .= "<tr>";
-            foreach($result as $key => $value){    
-                $html .= "<td>" . $value . "</td>";
-            }
-            $html .= "<td>";
-            $html .= "<button class='editarModal' onclick='userInfo(" . $result->id . ")'>Editar</button>";
-            $html .= "<button onclick='eliminarUsuario(" . $result->id . ")'>Elimanar</button>";
-            $html .= "</td>";
-            $html .= "</tr>";
-        }
-        echo ($html);
+        return ($results);
     }
     public static function getAll(){
         $db = \Config\Database::connect();
